@@ -4,22 +4,23 @@ from pydantic import BaseModel, validator
 
 
 class User(BaseModel):
-    email:str
-    password:str
-    role : str
-    project: Optional[List[DBRef]] = None 
+    email: str
+    password: str
+    role: str
+    project: Optional[List[DBRef]] = None
 
-    @validator
+    @validator('role')
     def role_is_valid(cls, v):
         if v not in ['admin', 'user']:
             raise ValueError("Role must be either 'admin' or 'user'")
         return v
-    
+
     @validator('project', pre=True)
     def convert_to_dbref(cls, v):
-        if isinstance(v, ObjectId):
-            return DBRef('projects', v)
+        if isinstance(v, list):
+            return [DBRef('projects', ObjectId(item)) if isinstance(item, str) else item for item in v]
         return v
+
     @validator('user_id', pre=True, always=True)
     def validate_user_id(cls, v):
         if isinstance(v, str):

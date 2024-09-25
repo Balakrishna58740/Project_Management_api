@@ -1,4 +1,9 @@
-
+from fastapi import FastAPI, HTTPException
+from fastapi.concurrency import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
+from app.config.db_config import mongodb,MONGO_URI,DATABASE_NAME
+from app.config.logger_config import get_logger
+from app.controller.users_controller import user_route
 
 app = FastAPI()
 
@@ -10,9 +15,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/attendance")
+@app.get("/Project Management")
 async def root():
-    return {"message": "Welcome to attendance"}
+    return {"message": "Welcome to Project Management"}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

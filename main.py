@@ -27,3 +27,4 @@ async def lifespan(app: FastAPI):
 
 app.router.lifespan_context = lifespan
 app.include_router(user_route, tags=["users"])
+app.include_router(project_route,tags=["Project"])

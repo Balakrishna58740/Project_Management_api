@@ -2,7 +2,7 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from app.config.logger_config import get_logger
 from app.models.project_model import Project
-from app.dto.project_dto import ProjectDTO, ProjectDTOResponse
+from app.dto.project_dto import ProjectDTO, ProjectResponseDTO
 from app.utils.response_utils import get_response
 from app.service.project_service import ProjectService
 

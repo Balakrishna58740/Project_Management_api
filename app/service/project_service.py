@@ -1,7 +1,7 @@
 from typing import List
 from app.config.logger_config import get_logger
 from app.models.project_model import Project
-from app.dto.project_dto import ProjectDTO, ProjectDTOResponse
+from app.dto.project_dto import ProjectDTO, ProjectResponseDTO
 from fastapi import HTTPException
 from app.repository.project_repo import ProjectRepo
 

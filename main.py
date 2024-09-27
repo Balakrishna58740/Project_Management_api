@@ -4,6 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config.db_config import mongodb,MONGO_URI,DATABASE_NAME
 from app.config.logger_config import get_logger
 from app.controller.users_controller import user_route
+from app.controller.todos_controller import todos_route
+from app.controller.project_controller import project_route
+
 
 app = FastAPI()
 
@@ -27,4 +30,5 @@ async def lifespan(app: FastAPI):
 
 app.router.lifespan_context = lifespan
 app.include_router(user_route, tags=["users"])
-app.include_router(project_route,tags=["Project"])
+app.include_router(project_route,tags=["project"])
+app.include_router(todos_route, tags=["todos"])

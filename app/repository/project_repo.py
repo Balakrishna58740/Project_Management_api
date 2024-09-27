@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from app.dto.project_dto import ProjectDTO, ProjectDTOResponse
+from app.dto.project_dto import ProjectDTO, ProjectResponseDTO
 from app.models.project_model import Project
 from bson import ObjectId
 from app.config.db_config import mongodb

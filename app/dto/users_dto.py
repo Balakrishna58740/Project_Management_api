@@ -1,6 +1,6 @@
 from typing import List, Optional
 from bson import DBRef, ObjectId
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, ConfigDict, Field, validator
 
 class UserDTO(BaseModel):
     email: Optional[str] = None
@@ -13,17 +13,9 @@ class UserDTO(BaseModel):
         if v not in ['admin', 'user']:
             raise ValueError("Role must be either 'admin' or 'user'")
         return v
-
+    
     class Config:
-        arbitrary_types_allowed = True  # Allow DBRef
-        json_encoders = {
-            ObjectId: str,  # Convert ObjectId to string
-            DBRef: lambda dbref: {
-                "collection": dbref.collection,
-                "id": str(dbref.id),  # Serialize DBRef ID as string
-                "database": dbref.database,
-            }
-        }
+        arbitrary_types_allowed = True
 
 class UserDTOResponse(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id")
@@ -44,12 +36,9 @@ class UserDTOResponse(BaseModel):
         return v
 
     class Config:
-        arbitrary_types_allowed = True  # Allow DBRef
+        populate_by_name = True
         json_encoders = {
-            ObjectId: str,  # Convert ObjectId to string
-            DBRef: lambda dbref: {
-                "collection": dbref.collection,
-                "id": str(dbref.id),  # Serialize DBRef ID as string
-                "database": dbref.database,
-            }
+            ObjectId: str,
+            DBRef: lambda ref: str(ref.id)
         }
+        arbitrary_types_allowed = True

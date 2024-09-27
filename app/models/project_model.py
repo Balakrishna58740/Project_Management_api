@@ -15,11 +15,11 @@ class Project(BaseModel):
 
     class Config:
         arbitrary_types_allowed = True  # Allow DBRef
-        json_encoders = {
-            ObjectId: str,  # Convert ObjectId to string
-            DBRef: lambda dbref: {
-                "collection": dbref.collection,  # Include collection name
-                "id": str(dbref.id),  # Serialize DBRef ID as string
-                "database": dbref.database,  # Include database name
-            }
-        }
+        # json_encoders = {
+        #     ObjectId: str,  # Convert ObjectId to string
+        #     DBRef: lambda dbref: {
+        #         "collection": dbref.collection,  # Include collection name
+        #         "id": str(dbref.id),  # Serialize DBRef ID as string
+        #         "database": dbref.database,  # Include database name
+        #     }
+        # }

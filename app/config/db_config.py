@@ -18,7 +18,7 @@ class MongoDB:
         print("MongoDB connection closed")
 
 # MongoDB connection details
-MONGO_URI = 'mongodb+srv://pukar:pukarpass@cluster0.2xqtwbl.mongodb.net/'
+MONGO_URI = 
 DATABASE_NAME = 'Project_Mangement'
 
 mongodb = MongoDB()
